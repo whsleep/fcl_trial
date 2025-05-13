@@ -7,19 +7,21 @@
     auto box = std::make_shared<fcl::Box<double>>(2.0, 2.0, 2.0); // 2x2x2 的立方体
 ```
 
-设置球以$(3.0,4.0,0.0)$为`box`旋转中心，旋转半径`r`为5.0
+设置球以 $(3.0,4.0,0.0)$ 为`box`旋转中心，旋转半径`r`为5.0
 
 > 确定球的起始位置和终点位置，`FCL`库中使用`Transform3`的变换矩阵表示坐标信息
-> $$
+>
+$$
 \left[
 \begin{matrix}
 R &  t \\
 0 & 1 \\
 \end{matrix}
 \right]
->$$
-> 例如，对于三维点$p_0=(x_0,y_0,z_0)$
->$$
+$$
+> 例如，对于三维点 $p_0=(x_0,y_0,z_0)$
+> 
+$$
 \begin{align}
 \left[
 \begin{matrix}
@@ -42,12 +44,14 @@ p_0 \\
 \right]\\
 p_1&=R\cdot p_0+t
 \end{align}
->$$
->具体流程为$p_0$先绕原点旋转$R$再平移$t$，这里的旋转和平移均是相对原点。
+$$
+> 
+>具体流程为 $p_0$ 先绕原点旋转 $R$ 再平移 $t$ ，这里的旋转和平移均是相对原点。
 
 设置`box`的起点和终点状态为
+
 $$
-tf\_box\_beg =
+tf \\_box \\_beg =
 \left[
 \begin{matrix}
 1 & 0 & 0 &  3+5 \\
@@ -56,7 +60,7 @@ tf\_box\_beg =
 0 & 0 & 0 &  1 \\
 \end{matrix}
 \right]\quad 
-tf\_box\_beg =
+tf \\_box \\_beg =
 \left[
 \begin{matrix}
 cos(\theta) & -sin(\theta) & 0 &  3+5\cdot cos(\theta) \\
@@ -66,7 +70,8 @@ sin(\theta) & cos(\theta) & 0 &  4+5\cdot sin(\theta) \\
 \end{matrix}
 \right]
 $$
-<img src="D:\vmshare\fcl_trial\5. continue_collsion\assets\image-20250509103134227.png" alt="image-20250509103134227" style="zoom:60%;" />
+
+<img src="https://github.com/whsleep/fcl_trial/blob/main/assets/image-20250509103134227.png" alt="image-20250509103134227" style="zoom:60%;" />
 
 
 
@@ -103,7 +108,7 @@ struct FCL_EXPORT ContinuousCollisionRequest
   
 };
 ```
-| <img src="D:\vmshare\fcl_trial\5. continue_collsion\assets\企业微信截图_17466919607362-1747098889060-2.png" alt="企业微信截图_17466919607362" height= "400"/> | <img src="D:\vmshare\fcl_trial\5. continue_collsion\assets\企业微信截图_17466920017173.png" alt="企业微信截图_17466920017173"  height = "400" /> |
+| <img src="https://github.com/whsleep/fcl_trial/blob/main/assets/1747098889060-2.png" alt="7466919607362" height= "400"/> | <img src="https://github.com/whsleep/fcl_trial/blob/main/assets/7466920017173.png" alt="7466920017173"  height = "400" /> |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 
 然后会在 `continuousCollide`函数中执行碰撞检测
@@ -295,7 +300,7 @@ S continuousCollideNaive(
 
 红色为`box`发生碰撞时的姿态。
 
-<img src="D:\vmshare\fcl_trial\5. continue_collsion\assets\image-20250512085204257.png" alt="image-20250512085204257" style="zoom:50%;" />
+<img src="https://github.com/whsleep/fcl_trial/blob/main/assets/image-20250512085204257.png" alt="image-20250512085204257" style="zoom:50%;" />
 
 ### 求解器类型测试
 
